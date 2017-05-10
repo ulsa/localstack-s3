@@ -7,12 +7,12 @@
   (:gen-class))
 
 (defn write-to-s3 [bucket-name object-key json-string]
-  (let [bytes (.getBytes json-string)]
+  (let [bytes (.getBytes json-string "UTF-8")]
     (s3/put-object :bucket-name bucket-name
                    :key object-key
                    :input-stream (ByteArrayInputStream. bytes)
                    :metadata {:content-length (count bytes)
-                              :content-type   "application/json"})))
+                              :content-type   "application/json; charset=utf-8"})))
 
 (defn read-from-s3 [bucket-name object-key]
   (-> (s3/get-object bucket-name object-key)
