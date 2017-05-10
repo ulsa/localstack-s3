@@ -24,7 +24,7 @@
         object-key "testing.json"
         credentials {:access-key (env :aws-access-key-id)
                      :secret-key (env :aws-secret-access-key)
-                     ;:endpoint   "http://localhost:4572"
+                     :endpoint   "http://localhost:4572"
                      }]
     (log/info "Checking access to S3 bucket" bucket-name)
     (defcredential credentials)
